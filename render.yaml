@@ -1,0 +1,14 @@
+# Triển khai thay thế trên Render (máy chủ Node chạy cả giao diện và API).
+services:
+  - type: web
+    name: soan-de-kiem-tra-dinh-ki
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false # đặt trong bảng điều khiển Render, KHÔNG ghi vào tệp này
